@@ -18,24 +18,18 @@ public class HelloController {
     private String currentOperator = "";
     private double num;
 
-    @FXML
+  @FXML
     public void handleDigit(ActionEvent event) {
 
         Button button = (Button) event.getSource();
-        currentInput += button.getText();
-        int count = 0;
-        for (int i=0; i < currentInput.length(); i++){
-            if (currentInput.charAt(i) == '0'){
-                count++;
-            }
-        }
-        if(currentInput.equals("0") && count > 1){
-            System.exit(0);
-        }
+        if (!button.getText().equals("0") || !currentInput.equals("0"))
+            currentInput += button.getText();
+
         display.setText(currentInput);
 
 
     }
+
 
 
 
