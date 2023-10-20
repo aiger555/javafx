@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+
 import java.util.EventObject;
 
 public class HelloController {
@@ -15,14 +16,28 @@ public class HelloController {
     private String currentInput = "";
     private double currentResult = 0;
     private String currentOperator = "";
+    private double num;
 
     @FXML
     public void handleDigit(ActionEvent event) {
 
         Button button = (Button) event.getSource();
         currentInput += button.getText();
+        int count = 0;
+        for (int i=0; i < currentInput.length(); i++){
+            if (currentInput.charAt(i) == '0'){
+                count++;
+            }
+        }
+        if(currentInput.equals("0") && count > 1){
+            System.exit(0);
+        }
         display.setText(currentInput);
+
+
     }
+
+
 
     @FXML
     public void handleOperator(ActionEvent event) {
@@ -59,6 +74,8 @@ public class HelloController {
             currentInput = "";
             currentOperator = "";
         }
+
+
     }
 
     @FXML
